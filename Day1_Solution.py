@@ -23,17 +23,18 @@ def solution_part_1(file):
 
 def solution_part_2(file):
     data = parse_data(file)
-
+    
     number_dict={'one':'1','two':'2','three':'3','four':'4','five':'5','six':'6','seven':'7','eight':'8','nine':'9'}
-    keys=''
+    keys='(?=('
 
     for key,value in number_dict.items():
         keys += key+'|'+value+'|' 
-  
+    keys = keys[:-1]+'))'
+
     calibration_list=[]
 
     for line in data:
-        line = re.findall(keys[:-1],line)
+        line = re.findall(keys,line)
         for i,num in enumerate(line):
             if len(num) !=1:
                 line[i]=line[i].replace(num, number_dict[num])
