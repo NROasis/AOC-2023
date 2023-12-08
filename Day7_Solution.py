@@ -55,12 +55,11 @@ def solution_part1(data):
 def find_win_joker(hand):
     count={}
     for card in hand[:-1]:
-        # if card.isdigit() is False and card != 'J':
-            # hand = list(map(lambda x: x.replace(card, card_dict[card]), hand))
         if card == 'J':
             count[0]='J'
         else:
             count[hand.count(card)]=card
+    
     hand = list(map(lambda x: x.replace('J', count[max(count.keys())]), hand))
     count={}
     for card in hand[:-1]:
